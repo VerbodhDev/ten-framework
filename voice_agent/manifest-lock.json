@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "packages": [
+    {
+      "type": "extension",
+      "name": "web_audio_control_go",
+      "version": "0.1.0",
+      "hash": "f5945022b45fe09ba9a6034761c012e5b8a3ade4a8e3f49874e3ca9aa8c11ab9",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime_go"
+        }
+      ],
+      "path": "ten_packages/extension/web_audio_control_go"
+    },
+    {
+      "type": "extension",
+      "name": "audio_file_player_python",
+      "version": "0.1.0",
+      "hash": "a1f75f849016ceaebcb1c47932b718278af4c37a53c7981a690d85e941cb4c37",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime_python"
+        }
+      ],
+      "path": "ten_packages/extension/audio_file_player_python"
+    },
+    {
+      "type": "extension",
+      "name": "azure_asr_python",
+      "version": "0.2.2",
+      "hash": "519e0eb0656b0ab9d5af9dfbf23db6b40e7a474a1301d01aa6a38b6ab8b0dd0f",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime_python"
+        },
+        {
+          "type": "system",
+          "name": "ten_ai_base"
+        }
+      ],
+      "path": "ten_packages/extension/azure_asr_python"
+    },
+    {
+      "type": "extension",
+      "name": "vtt_nodejs",
+      "version": "0.1.0",
+      "hash": "3502a90a5ace17ca2961cdd01266f2fd04168f1a472658533b1685f75ae44ea0",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime_nodejs"
+        }
+      ],
+      "path": "ten_packages/extension/vtt_nodejs"
+    },
+    {
+      "type": "addon_loader",
+      "name": "nodejs_addon_loader",
+      "version": "0.11.47",
+      "hash": "c6e5eec3bd1ee2b67532df7ebaa19c361f15a5a6875f15d186109971204ef951",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime"
+        },
+        {
+          "type": "system",
+          "name": "ten_runtime_nodejs"
+        }
+      ],
+      "supports": [
+        {
+          "os": "mac",
+          "arch": "arm64"
+        }
+      ]
+    },
+    {
+      "type": "extension",
+      "name": "openai_asr_python",
+      "version": "0.2.2",
+      "hash": "dc0d2ecf5c104c396b0539e7f915041453d007aedebd121740c5bb965fd513dc",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime_python"
+        },
+        {
+          "type": "system",
+          "name": "ten_ai_base"
+        }
+      ],
+      "path": "ten_packages/extension/openai_asr_python"
+    },
+    {
+      "type": "extension",
+      "name": "openai_llm2_python",
+      "version": "0.2.0",
+      "hash": "ad24801cf718276830749bc50d72c5eba969e5d0ae7538ebd6e6d1ad0b414244",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime_python"
+        },
+        {
+          "type": "system",
+          "name": "ten_ai_base"
+        }
+      ],
+      "path": "ten_packages/extension/openai_llm2_python"
+    },
+    {
+      "type": "extension",
+      "name": "openai_tts2_python",
+      "version": "0.5.1",
+      "hash": "fe3e4473196cbab079a7a6ff99282fec7259e80a57ced948bbc4b27908a3df81",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime_python"
+        },
+        {
+          "type": "system",
+          "name": "ten_ai_base"
+        }
+      ],
+      "path": "ten_packages/extension/openai_tts2_python"
+    },
+    {
+      "type": "extension",
+      "name": "main_python",
+      "version": "0.1.0",
+      "hash": "fa5c9fbf4d5e9221615f2ffffd036b5c640170e2065be3978e49fbfb9eb31650",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime_python"
+        },
+        {
+          "type": "system",
+          "name": "ten_ai_base"
+        }
+      ],
+      "path": "ten_packages/extension/main_python"
+    },
+    {
+      "type": "system",
+      "name": "ten_runtime_python",
+      "version": "0.11.47",
+      "hash": "d97903c6cd0dd50d5f4de54d925b905b8682846f0a660765b7108a42e02845d0",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime"
+        },
+        {
+          "type": "addon_loader",
+          "name": "python_addon_loader"
+        }
+      ],
+      "supports": [
+        {
+          "os": "mac",
+          "arch": "arm64"
+        }
+      ]
+    },
+    {
+      "type": "system",
+      "name": "ten_ai_base",
+      "version": "0.7.30",
+      "hash": "1608448d02897a411f6b863974fcaf12a695e0f588ceab1250e5581344dd0280",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime_python"
+        }
+      ]
+    },
+    {
+      "type": "system",
+      "name": "ten_runtime",
+      "version": "0.11.47",
+      "hash": "085f25011d0f00ab2e8f0024dafc72d3bc68832448abdcf171505f24418ed97b",
+      "supports": [
+        {
+          "os": "mac",
+          "arch": "arm64"
+        }
+      ]
+    },
+    {
+      "type": "system",
+      "name": "ten_runtime_nodejs",
+      "version": "0.11.47",
+      "hash": "9a56a9c7bacbe01924151a1d997c19513a553b7516ebb898ea1af3f3a630e173",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime"
+        }
+      ],
+      "supports": [
+        {
+          "os": "mac",
+          "arch": "arm64"
+        }
+      ]
+    },
+    {
+      "type": "system",
+      "name": "ten_runtime_go",
+      "version": "0.11.47",
+      "hash": "2c5246ff0c6dab0a3e41831521e6a3f614b74447e8739984aeffd15bfb57d53c",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime"
+        }
+      ],
+      "supports": [
+        {
+          "os": "mac",
+          "arch": "arm64"
+        }
+      ]
+    },
+    {
+      "type": "addon_loader",
+      "name": "python_addon_loader",
+      "version": "0.11.47",
+      "hash": "fbf83c9dc1fad9899fd8f99ef042565bd91f558140e4844d98fecc68531474b7",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "ten_runtime"
+        },
+        {
+          "type": "system",
+          "name": "ten_runtime_python"
+        }
+      ],
+      "supports": [
+        {
+          "os": "mac",
+          "arch": "arm64"
+        }
+      ]
+    }
+  ]
+}

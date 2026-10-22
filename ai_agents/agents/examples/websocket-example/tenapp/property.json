@@ -22,13 +22,16 @@
             {
               "type": "extension",
               "name": "stt",
-              "addon": "deepgram_asr_python",
+              "addon": "openai_asr_python",
               "extension_group": "stt",
               "property": {
                 "params": {
-                  "api_key": "${env:DEEPGRAM_API_KEY}",
-                  "language": "en-US",
-                  "model": "nova-3"
+                  "api_key": "${env:OPENAI_API_KEY}",
+                  "input_audio_format": "pcm16",
+                  "input_audio_transcription": {
+                    "model": "whisper-1",
+                    "language": "en"
+                  }
                 }
               }
             },
@@ -41,27 +44,24 @@
                 "base_url": "https://api.openai.com/v1",
                 "api_key": "${env:OPENAI_API_KEY}",
                 "frequency_penalty": 0.9,
-                "model": "${env:OPENAI_MODEL}",
+                "model": "gpt-4o",
                 "max_tokens": 512,
-                "prompt": "",
-                "proxy_url": "${env:OPENAI_PROXY_URL|}",
-                "greeting": "TEN Agent connected. How can I help you today?",
+                "prompt": "You are a helpful AI voice assistant. Keep your responses concise and conversational.",
+                "greeting": "Hello! I'm your AI assistant. How can I help you today?",
                 "max_memory_length": 10
               }
             },
             {
               "type": "extension",
               "name": "tts",
-              "addon": "elevenlabs_tts2_python",
+              "addon": "openai_tts2_python",
               "extension_group": "tts",
               "property": {
-                "dump": false,
-                "dump_path": "./",
                 "params": {
-                  "key": "${env:ELEVENLABS_TTS_KEY}",
-                  "model_id": "eleven_multilingual_v2",
-                  "voice_id": "pNInz6obpgDQGcFmaJgB",
-                  "output_format": "pcm_16000"
+                  "api_key": "${env:OPENAI_API_KEY}",
+                  "model": "tts-1",
+                  "voice": "alloy",
+                  "speed": 1.0
                 }
               }
             },
@@ -71,34 +71,13 @@
               "addon": "main_python",
               "extension_group": "control",
               "property": {
-                "greeting": "TEN Agent connected. How can I help you today?"
-              }
-            },
-            {
-              "type": "extension",
-              "name": "weatherapi_tool_python",
-              "addon": "weatherapi_tool_python",
-              "extension_group": "default",
-              "property": {
-                "api_key": "${env:WEATHERAPI_API_KEY|}"
+                "greeting": "Hello! I'm your AI assistant. How can I help you today?"
               }
             }
           ],
           "connections": [
             {
               "extension": "main_control",
-              "cmd": [
-                {
-                  "names": [
-                    "tool_register"
-                  ],
-                  "source": [
-                    {
-                      "extension": "weatherapi_tool_python"
-                    }
-                  ]
-                }
-              ],
               "data": [
                 {
                   "name": "asr_result",

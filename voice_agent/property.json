@@ -1,0 +1,227 @@
+{
+  "ten": {
+    "predefined_graphs": [
+      {
+        "name": "voice_assistant",
+        "auto_start": true,
+        "singleton": true,
+        "graph": {
+          "nodes": [
+            {
+              "type": "extension",
+              "name": "stt",
+              "addon": "openai_asr_python",
+              "extension_group": "asr",
+              "property": {
+                "params": {
+                  "api_key": "${env:OPENAI_API_KEY}",
+                  "input_audio_format": "pcm16",
+                  "input_audio_transcription": {
+                    "model": "whisper-1",
+                    "language": "en"
+                  }
+                }
+              }
+            },
+            {
+              "type": "extension",
+              "name": "llm",
+              "addon": "openai_llm2_python",
+              "extension_group": "chatgpt",
+              "property": {
+                "base_url": "https://api.openai.com/v1",
+                "api_key": "${env:OPENAI_API_KEY}",
+                "frequency_penalty": 0.9,
+                "model": "gpt-4o",
+                "max_tokens": 512,
+                "prompt": "You are a helpful AI voice assistant. Keep your responses concise and conversational.",
+                "greeting": "Hello! I'm your AI assistant. How can I help you today?",
+                "max_memory_length": 10
+              }
+            },
+            {
+              "type": "extension",
+              "name": "tts",
+              "addon": "openai_tts2_python",
+              "extension_group": "tts",
+              "property": {
+                "params": {
+                  "api_key": "${env:OPENAI_API_KEY}",
+                  "model": "tts-1",
+                  "voice": "alloy",
+                  "speed": 1.0
+                }
+              }
+            },
+            {
+              "type": "extension",
+              "name": "main_control",
+              "addon": "main_python",
+              "extension_group": "control",
+              "property": {
+                "greeting": "Hello! I'm your AI assistant. How can I help you today?"
+              }
+            },
+            {
+              "type": "extension",
+              "name": "web_audio_control_go",
+              "addon": "web_audio_control_go",
+              "extension_group": "web_server"
+            },
+            {
+              "type": "extension",
+              "name": "audio_file_player_python",
+              "addon": "audio_file_player_python",
+              "extension_group": "audio_player"
+            },
+            {
+              "type": "extension",
+              "name": "vtt_nodejs",
+              "addon": "vtt_nodejs",
+              "extension_group": "vtt"
+            }
+          ],
+          "connections": [
+            {
+              "extension": "main_control",
+              "data": [
+                {
+                  "name": "asr_result",
+                  "source": [
+                    {
+                      "extension": "stt"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "extension": "web_audio_control_go",
+              "cmd": [
+                {
+                  "name": "start_play",
+                  "dest": [
+                    {
+                      "extension": "audio_file_player_python"
+                    }
+                  ]
+                },
+                {
+                  "name": "start_recording",
+                  "dest": [
+                    {
+                      "extension": "vtt_nodejs"
+                    }
+                  ]
+                },
+                {
+                  "name": "stop_recording",
+                  "dest": [
+                    {
+                      "extension": "vtt_nodejs"
+                    }
+                  ]
+                }
+              ],
+              "audio_frame": [
+                {
+                  "name": "pcm_frame",
+                  "dest": [
+                    {
+                      "extension": "stt"
+                    },
+                    {
+                      "extension": "vtt_nodejs"
+                    }
+                  ]
+                },
+                {
+                  "name": "pcm_frame",
+                  "source": [
+                    {
+                      "extension": "tts"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "extension": "audio_file_player_python",
+              "audio_frame": [
+                {
+                  "name": "pcm_frame",
+                  "dest": [
+                    {
+                      "extension": "stt"
+                    },
+                    {
+                      "extension": "vtt_nodejs"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "extension": "stt",
+              "data": [
+                {
+                  "name": "asr_result",
+                  "dest": [
+                    {
+                      "extension": "web_audio_control_go"
+                    },
+                    {
+                      "extension": "vtt_nodejs"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "log": {
+      "handlers": [
+        {
+          "matchers": [
+            {
+              "level": "debug"
+            }
+          ],
+          "formatter": {
+            "type": "plain",
+            "colored": true
+          },
+          "emitter": {
+            "type": "file",
+            "config": {
+              "path": "logs/debug.log"
+            }
+          }
+        },
+        {
+          "matchers": [
+            {
+              "category": "key_point",
+              "level": "debug"
+            },
+            {
+              "level": "info"
+            }
+          ],
+          "formatter": {
+            "type": "plain",
+            "colored": true
+          },
+          "emitter": {
+            "type": "console",
+            "config": {
+              "stream": "stderr"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
